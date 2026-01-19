@@ -1,0 +1,100 @@
+Organizacja kodu w programowaniu|
+Omówić budowę jednostki translacji i zawartość poszczególnych plików dedykowanej dla pojedynczej klasy|
+Na przykładzie kodu wytłumaczyć sposoby zapobiegania wielokrotnemu dołączaniu plików nagłówkowych i dołączeniom cyklicznym|
+Porównać dostępność i działanie zasobów globalnych definiowanych jako extern, static lub inline
+@
+Polimorfizm proceduralny statyczny|
+Wyjaśnić, jak uzyskujemy i jak działa polimorfizm proceduralny statyczny w języku C/C++|
+Na przykładzie kodu wyjaśnić jak argumenty domyślne wpływają na przeciążanie nazw funkcji|
+Przedyskutować w jakich sytuacjach używa się polimorfizmu statycznego
+@
+Polimorfizm proceduralny dynamiczny|
+Wyjaśnić, jak uzyskujemy i jak działa polimorfizm proceduralny dynamiczny w języku C/C++|
+Na przykładzie kodu wyjaśnić jak utworzyć i posłużyć się wskaźnikiem do nietrywialnej funkcji|
+Przedyskutować w jakich sytuacjach używa się polimorfizmu dynamicznego
+@
+Przekazywanie tablic do funkcji|
+Wymienić i podać składnię sposobów przesyłania tablic (jedno i wielowymiarowych) do funkcji|
+Na przykładzie kodu pokazać jak sposób przekazania tablicy wpływa na elastyczność wywołania funkcji|
+Zaproponować i przedyskutować przykłady nietypowego przekazywania tablic do funkcji z uzasadnieniem ich stosowania
+@
+Dynamiczna alokacja pamięci|
+Omówić składnie alokacji/dealokacji dynamicznej instancji i tablicy instancji typów fundamentalnych i złożonych w języku C++|
+Na przykładach kodu zaproponować jak powiązać alokację z jej rozmiarem, aby informacje te nie były rozdzielnymi informacjami|
+Przedyskutować jakie są różnice między operatorami new/delete a funkcjami malloc/free
+@
+Wyciek pamięci|
+Omówić zdefiniować „czas życia alokacji” i pojęcie wycieku pamięci|
+Na przykładach kodu wytłumaczyć w jakich sytuacjach może dojść do wycieku pamięci|
+Podać jakie wymogi muszą być spełnione, aby funkcja mogła zwróć wynik jako wskaźnik lub referencję i przedyskutować potencjalne konsekwencje braku ich spełnienia
+@
+Dynamiczne tablice wielowymiarowe|
+Wymienić i omówić budowę poznanych rodzajów alokacji dynamicznych tablic wielowymiarowych|
+Na przykładzie kodu wytłumaczyć jak rozpoznać rodzaj alokacji wielowymiarowej|
+Porównać wymienione rodzaje alokacji pod względem elastyczności, zużycia pamięci i szybkości przetwarzania
+@
+Operacje bitowe|
+Wymienić i zdefiniować podstawowe operacje bitowe w języku C/C++|
+Na przekładzie kodu i wizualizacji reprezentacji binarnej liczby, wytłumaczyć działanie wybranej operacji bitowej z użyciem masek bitowych|
+Przedyskutować w jaki sposób można wykorzystać operacje bitowe do kompresji informacji na potrzeby serializacji i archiwizacji danych
+@
+Operacje plikowe w C|
+Wymienić i scharakteryzować wszystkie tryby pracy z plikami dostępne ramach biblioteki cstdio|
+Wytłumaczyć różnice w dzianiu i przeznaczeniu trybów „r+”, „w+” i „a+”|
+Porównać tryb komunikacji binarnej i tekstowej w kontekście użyteczności do archiwizacji informacji
+@
+Klasy i enkapsulacja|
+Zdefiniować pojęcie klasy, instancji klasy i zasadę enkapsulacji|
+Na przykładzie kodu wytłumaczyć budowę ciała klasy, tworzenie instancji i dostęp do składników klasy w obliczu enkapsulacji|
+Przedyskutować jaki korzyści daje nam dostęp do pól przez akcesory
+@
+Składniki klasy|
+Omówić składnie definicji składników instancyjnych i statycznych|
+Na przykładzie kodu wytłumaczyć różnice w działaniu tych składników|
+Przedyskutować zastosowania składników statycznych klas w programowaniu obiektowym
+@
+Tworzenie instancji|
+Omówić składnię nagłówka i przeznaczenie poznanych typów konstruktów|
+Na przykładzie kodu pokazać w jakich sytuacjach wywołane zostaną poszczególne typy|
+Porównać użycie listy inicjalizacyjnej do inicjalizacji pól w ciele konstruktora
+@
+Instancje stałe|
+Omówić znaczenie specyfikatora const za nagłówkiem metody i działanie pół typu mutable|
+na przykładzie kodu pokazać w jakich sytuacjach możemy mieć problem z praca na instancji chronionej przed zapisem|
+Porównać inicjalizację pól stałych przez wartości domyślne i listę inicjalizacyjną
+@
+Dziedziczenie|
+Omówić typy dziedziczenia i tworzenie wyjątków od typu dziedziczenia|
+Na przykładzie kodu wyjaśnić, jak działa przesłanianie metod w klasach pochodnych i jak uzyskać dostęp do składników prywatnych klasy bazowej|
+Na konkretnych przykładach przedyskutować zastosowanie dziedziczenia w programowaniu obiektowym
+@
+Hierarchie dziedziczenia|
+Omówić poznane hierarchie dziedziczenia i z jakich narzędzi programistycznych korzystają|
+Wytłumaczyć praktyczny przykład dziedziczenia wirtualnego z wyjaśnieniem która klasa odpowiada za tworzenie poszczególnych instancji|
+Przedyskutować na konkretnych przykładach dobór hierarchii dziedziczenia do modelowania problemu obiektowego
+@
+Polimorfizm obiektowy|
+Zdefiniować pojęcie polimorfizmu obiektowego dynamicznego i statycznego|
+Wytłumaczyć na przykładzie jak uzyskać działanie polimorfizmu dynamicznego i jak działa specyfikator override|
+Przedyskutować w jaki sposób możemy dokonać dynamicznego rozpoznania typu i na jakie trudności możemy przy tym napotkać
+@
+Interakcje obiektowe|
+Wymienić i krótko scharakteryzować podstawowe relacje obiektowe|
+Na przykładzie kodu wytłumaczyć implementację poprawnej asocjacji obustronnej|
+Przedyskutować inne niż podane na wykładzie przykłady zastosowania każdej z wymienionych relacji
+@
+Przeciążenie operatorów|
+Omówić składnię obu sposobów przeciążania operatorów dla własnych złożonych typów danych|
+Na przykładzie zademonstrować przeciążenie dwóch różnych operatorów (każdy innym sposobem)|
+Porównać elastyczność i stosowalność obu sposobów przeciążania
+@
+Konwersje|
+Zdefiniować czym są konwersje formalne, nieformalne, redukujące i rozbudowujące|
+Na przykładzie zademonstrować definicję jednej konwersji formalnej i jednej nieformalnej|
+Porównać właściwości konwersji formalnych i nieformalnych w kontekście ich elastyczności i użyteczności w kodzie
+@
+Kopiowanie zasobów zewnętrznych|
+Omówić czym jest kopia element-po-elemencie i kopia binarna zasobu|
+Na przykładzie kodu wytłumaczyć jak zaimplementować jedną i drugą|
+Przedyskutować przy jakich wymogach można zastosować kopię binarną i jakie będą konsekwencje ich naruszenia
+@

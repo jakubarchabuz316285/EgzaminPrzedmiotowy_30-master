@@ -1,0 +1,100 @@
+Zmienne i stałe|
+Wymienić i zdefiniować typy fundamentalne w C++ i omówić ich przeznaczanie|
+Wyjaśnić na przykładach, jakie mogą być konsekwencje braku inicjalizacji zmiennych|
+Porównać różne typy stałych w C++ pod względem ich wpływu na zużycie pamięci i czytelność kodu
+@
+Operacje na liczbach rzeczywistych|
+Omówić techniki porównywania liczb rzeczywistych|
+Wytłumaczyć przyczyny powstawania błędów przy pracy z liczbami rzeczywistymi|
+Porównać dokładność typów rzeczywistych i dokładność reprezentacji liczb całkowitych w typach całkowitych i rzeczywistych
+@
+Operacje arytmetyczne|
+Wyjaśnić, kiedy następuje dzielenie rzeczywiste, a kiedy całkowite|
+Omówić na przykładzie jak zapisać w języku C++ złożony wzór matematyczny|
+Porównać technikę dekompozycji wzorów matematycznych i optymalizację obliczeń matematycznych
+@
+Instrukcje warunkowe|
+Omówić składnię pełnej instrukcji warunkowej i instrukcji wyboru|
+Wyjaśnić na przykładzie, jak różnice w działaniu tych instrukcji wpływają na logikę programu|
+Przedyskutować kryteria ich doboru w procesie tworzenia logiki decyzyjnej programu
+@
+Operatory logiczne i porównania|
+Przedstawić i omówić operatory porównania i relacji|
+Na przykładzie omówić tworzenie złożonych wyrażeń logicznych|
+Porównać elastyczność zagnieżdżania if-else z wykorzystaniem wbudowanych reguł optymalizacji wyrażeń logicznych
+@
+Instrukcje iteracyjne|
+Przedstawić składnię i działanie instrukcji iteracyjnych w C++|
+Na przykładach wyjaśnić działanie instrukcji break, continue i goto|
+Porównać poznane rodzaje pętli pod względem ich zastosowania w programowaniu
+@
+Złożone operatory przypisania|
+Przedstawić i omówić działanie dwóch różnych złożonych operatorów przypisania|
+Na przykładach wyjaśnić jak priorytety operatorów (innych niż arytmetyczne) wpływają na poprawność operacji|
+Porównać działanie i zastosowanie post/preinkrementacji
+@
+Operacje tablicowe|
+Omówić składnię operacji tablicowych w C/C++ (deklaracja, indeksowanie i inicjalizacja)|
+Omówić budowę w pamięci tablic jedno i wielowymiarowych|
+Porównać pod względem elastyczności i stosowalności tabelaryzację logiki i instrukcji warunkowej/wyboru
+@
+Łańcuchy znakowe|
+Omówić budowę i specyfikę przetwarzania łańcucha znakowego (c-string’u)|
+Omówić praktyczny przykład bezpośredniego przetwarzania c-stringu|
+Omówić główne podobieństwa i różnice w przetwarzaniu c-stringów z innymi typami tablicowymi
+@
+Losowanie liczb|
+Wyjaśnić w jaki sposób uzyskujemy w C liczby pseudolosowe i czym jest posiew generatora|
+Omówić losowanie liczb z nieciągłych zbiorów lub losowanie bez zwracania|
+Porównać podobieństwa i różnice w sposobach losowania liczb całkowitych i rzeczywistych z zadanych przedziałów liczbowych
+@
+Wskaźniki i referencje|
+Wyjaśnić czym jest wskaźnik i jakie operacje możemy na nim wykonać|
+Wyjaśnić, jak działa specyfikator const w deklaracji typu wskaźnikowego|
+Porównać wskaźniki i referencje pod względem elastyczności i bezpieczeństwa wykonywania operacji
+@
+Operacje we/wy|
+Omówić poznane narzędzia C i C++ do komunikacji z użytkownikiem|
+Wyjaśnić w jaki sposób można sterować precyzją wyświetlania liczb zmiennoprzecinkowych w konsoli systemowej|
+Przedyskutować w jakich sytuacjach może dojść do utknięcia informacji w buforze strumienia wejściowego
+@
+Struktura programu|
+Omówić strukturę programu w C/C++ i sposoby zapisu komentarzy|
+Omówić znaczenie preprocesora i przykład makrodefinicji|
+Porównać pod względem zastosowania i elastyczności poznane techniki kompilacji warunkowej
+@
+Błędy w programowaniu|
+Wyjaśnić czym są błędy czasu kompilacji i wykonania i jakie mają typowe objawy|
+Wyjaśnić jak poprawnie przeprowadzić izolację i stabilizację błędu czasu wykonania|
+Przedyskutować strategie usuwania obu typów błędów
+@
+Funkcje|
+Wyjaśnić czym jest i jak zbudowana jest funkcja w C/C++|
+Na przykładzie kodu wyjaśnić, jak działa wywołanie funkcji i jak wygląda przebieg sterowania|
+Porównać zalety i wady algorytmów iteracyjnych i rekurencyjnych
+@
+Typy wyliczeniowe|
+Omówić składnię i zastosowanie obu typów wyliczeniowych dostępnych C++|
+Na przykładach kodu wyjaśnić, jak możemy praktycznie wykorzystać wartość klucza liczbowego|
+Przedyskutować różnicę między oboma rodzajami typu wyliczeniowego
+@
+Typ strukturalny|
+Omówić składnię i zastosowanie typu strukturalnego w C/C++|
+Na przykładzie kodu omówić tworzenie instancji struktury i dostęp do jej składników (w tym z użyciem wskaźnika)|
+Porównać proceduralną obsługę struktur do proceduralnej obsługi tablic
+@
+Sygnalizacja problemów|
+Omówić poznane techniki sygnalizacji błędów występujących w funkcjach (w tym asercje)|
+Na przykładzie kodu wyjaśnić, jak działa prawidłowy system obsługi błędów oparty na wyjątkach|
+Przedyskutować, kiedy należy używać asercji, a kiedy innych typów sygnalizacji błędów
+@
+Testy jednostkowe|
+Omówić budowę testu jednostkowego i wyjaśnić jakie stawiamy mu wymagania|
+Na przykładzie kodu omówić test jednostkowy testujący funkcję zadaną przez egzaminującego|
+Przedyskutować wady i zalety techniki TDD w kontekście poprawności wytwarzania kodu
+@
+Algorytmy numeryczne|
+Wyjaśnić czym jest i jak działa typowy algorytm numeryczny i jakie spotykamy typy zbieżności|
+Omówić (do wyboru) algorytm różniczkowania lub całkowania numerycznego|
+Przedyskutować sposób doboru kryterium zbieżności algorytmu do rozwiązywanego problemu
+@
