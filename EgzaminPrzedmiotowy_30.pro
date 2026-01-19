@@ -10,6 +10,7 @@ CONFIG += c++17
 
 
 SOURCES += \
+    W_DANYCH/historia_egzaminow.cpp \
     W_DANYCH\importer.cpp \
     W_DANYCH\importerBlokowy.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     W_DANYCH\urn.cpp
 
 HEADERS += \
+    W_DANYCH/historia_egzaminow.h \
     W_DANYCH\importer.h \
     W_DANYCH\importerBlokowy.h \
     W_PREZENTACJI\mainwindow.h \

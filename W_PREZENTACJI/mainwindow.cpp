@@ -35,6 +35,7 @@
 
 MainWindow::~MainWindow()
 {
+    m_uslugi.zapiszHistorieWPliku();
     delete ui;
 }
 

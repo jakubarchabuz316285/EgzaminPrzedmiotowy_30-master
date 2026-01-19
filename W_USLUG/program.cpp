@@ -52,7 +52,8 @@ void Program::losujPytania(int blok, int num)
     // Pobranie pytań z bazy zgodnie z wylosowanymi indeksami:
     for(int pyt = 0; pyt < toLos; pyt++)
         m_WylosPyt[blok][pyt] = m_BazaPytan->getBlok(blok).at(numery[pyt]);
-
+    QVector<Pytanie> odrzucone;
+    historia.dodaj_egzamin(getAktPrzedmiot(), m_WylosPyt[blok], odrzucone);
     // Zlecenie wypisania pytań do warstwy prezentacji przy pomocy sygnału:
     emit wypisz(m_WylosPyt[blok], blok);
 

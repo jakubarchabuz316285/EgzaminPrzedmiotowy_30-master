@@ -20,8 +20,8 @@ public:
     QString getWiedza();
     QString getZrozumienie();
     QString getDyskusja();
-    int getNumer () {return m_numer;}
-    int getBlok () {return m_blok;}
+    int getNumer ()const {return m_numer;}
+    int getBlok ()const {return m_blok;}
 };
 
 #endif // PYTANIE_H
