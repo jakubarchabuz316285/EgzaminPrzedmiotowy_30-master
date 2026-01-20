@@ -98,39 +98,59 @@ void Program::ponownieWypiszWylosowane(int blok)
     // zbędny. Chodzi o wyraźne zaznaczenie, że w razie niewłaściwej liczby pytań ta usługa ma
     // nie robić nic!
 }
+/**
+ * Wywołuje proces zapisu aktualnej historii do pliku binarnego.
+ * Jest to "pośrednik" między interfejsem użytkownika a klasą Historia_egzaminow.
+ */
 void Program::zapiszHistorieWPliku()
 {
+    // Próba zapisu - metoda zapisz_instancje() tworzy plik .bin z aktualną datą
     if(!historia.zapisz_instancje()) {
         qDebug() << "Błąd zapisu instancji w warstwie danych!";
     }
 }
+
+/**
+ * Wczytuje dane z pliku binarnego i przekształca je w sformatowany dokument HTML.
+ * Pozwala na wyświetlenie historii w czytelnej formie (np. w kontrolce QTextBrowser).
+ */
 QString Program::generujRaportHistorii(const QString &sciezka)
 {
+    // 1. Próba wczytania danych binarnych z podanej ścieżki
     if (!historia.wczytaj_instancje(sciezka)) {
         return "<h3>Błąd: Nie znaleziono pliku lub plik jest uszkodzony.</h3>";
     }
 
+    // 2. Pobranie wczytanej listy sesji
     const QVector<Historia_egzaminow::Sesja_egzaminacyjna> &sesje = historia.get_historia();
 
+    // 3. Sprawdzenie, czy historia nie jest pusta
     if (sesje.isEmpty()) {
         return "<h3>Brak zapisanych egzaminów w tym pliku.</h3>";
     }
 
+    // 4. Budowanie dokumentu HTML - nagłówek
     QString html = "<html><body><h1 style='color: #2980b9;'>Historia Egzaminów</h1>";
 
+    // 5. Iteracja po każdej sesji egzaminacyjnej w historii
     for (const auto &sesja : sesje) {
-        html += "<hr></hr>";
+        html += "<hr></hr>"; // Linia oddzielająca sesje
         html += "<div style='border: 1px solid #ccc; margin-bottom: 20px; padding: 10px; border-radius: 5px;'>";
+
+        // Wyświetlanie metadanych sesji (nazwa przedmiotu i czas)
         html += "<p><b>Przedmiot:</b> " + sesja.przedmiot + "</p>";
         html += "<p><b>Data:</b> " + sesja.data.toString("dd.MM.yyyy HH:mm") + "</p>";
 
+        // 6. Lista pytań, które zostały wylosowane podczas tej sesji
         html += "<b>Pytania wylosowane:</b><ul>";
         for (const auto &dane : sesja.wylosowane) {
+            // Zabezpieczenie na wypadek, gdyby treść pytania była pusta (np. błąd importu)
             QString tekst = dane.tresc.isEmpty() ? "Brak treści (tylko nr: " + QString::number(dane.numer) + ")" : dane.tresc;
             html += "<li>" + tekst + "</li>";
         }
         html += "</ul></div>";
     }
+
     html += "</body></html>";
-    return html;
+    return html; // Zwrócenie gotowego kodu HTML do wyświetlenia
 }
