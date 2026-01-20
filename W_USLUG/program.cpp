@@ -98,3 +98,39 @@ void Program::ponownieWypiszWylosowane(int blok)
     // zbędny. Chodzi o wyraźne zaznaczenie, że w razie niewłaściwej liczby pytań ta usługa ma
     // nie robić nic!
 }
+void Program::zapiszHistorieWPliku()
+{
+    if(!historia.zapisz_instancje()) {
+        qDebug() << "Błąd zapisu instancji w warstwie danych!";
+    }
+}
+QString Program::generujRaportHistorii(const QString &sciezka)
+{
+    if (!historia.wczytaj_instancje(sciezka)) {
+        return "<h3>Błąd: Nie znaleziono pliku lub plik jest uszkodzony.</h3>";
+    }
+
+    const QVector<Historia_egzaminow::Sesja_egzaminacyjna> &sesje = historia.get_historia();
+
+    if (sesje.isEmpty()) {
+        return "<h3>Brak zapisanych egzaminów w tym pliku.</h3>";
+    }
+
+    QString html = "<html><body><h1 style='color: #2980b9;'>Historia Egzaminów</h1>";
+
+    for (const auto &sesja : sesje) {
+        html += "<hr></hr>";
+        html += "<div style='border: 1px solid #ccc; margin-bottom: 20px; padding: 10px; border-radius: 5px;'>";
+        html += "<p><b>Przedmiot:</b> " + sesja.przedmiot + "</p>";
+        html += "<p><b>Data:</b> " + sesja.data.toString("dd.MM.yyyy HH:mm") + "</p>";
+
+        html += "<b>Pytania wylosowane:</b><ul>";
+        for (const auto &dane : sesja.wylosowane) {
+            QString tekst = dane.tresc.isEmpty() ? "Brak treści (tylko nr: " + QString::number(dane.numer) + ")" : dane.tresc;
+            html += "<li>" + tekst + "</li>";
+        }
+        html += "</ul></div>";
+    }
+    html += "</body></html>";
+    return html;
+}

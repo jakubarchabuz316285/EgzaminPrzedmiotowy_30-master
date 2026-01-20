@@ -20,12 +20,8 @@ public:
     QStringList getListaPrzedmiotow();
     void odznaczPytania(QVector<int>,int);
     void ponownieWypiszWylosowane(int blok);
-    void zapiszHistorieWPliku()
-    {
-        if(!historia.zapisz_instancje()) {
-            qDebug() << "Błąd zapisu instancji w warstwie danych!";
-        }
-    }
+    void zapiszHistorieWPliku();
+    QString generujRaportHistorii(const QString &sciezka);
 
 signals:
     void wypisz(QVector<Pytanie>&,int);

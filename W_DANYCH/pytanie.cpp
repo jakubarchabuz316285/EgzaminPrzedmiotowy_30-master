@@ -35,7 +35,7 @@ Pytanie::Pytanie(QString &rawData, int num, int blok)
 
 // GETTERY TREŚCI CZYSTEJ (sam tekst):
 
-QString Pytanie::getCzystyNaglowek()
+QString Pytanie::getCzystyNaglowek() const
 {
     return m_naglowek;
 }

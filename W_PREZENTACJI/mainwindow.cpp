@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QCheckBox>
 #include <QHBoxLayout>
-
+#include <QFileDialog>
 // KONSTRUKTORY, SETUP I DESTRUKTOR:
 
                                    MainWindow::MainWindow(QWidget *parent) :
@@ -316,3 +316,25 @@ void MainWindow::on_checkDekomponuj_stateChanged(int state)
     Q_UNUSED(state);
     m_uslugi.ponownieWypiszWylosowane(ui->tabBloki->currentIndex());
 }
+
+void MainWindow::on_wczytaj_historie_btn_clicked()
+{
+    // 1. Wybór pliku
+    QString sciezka = QFileDialog::getOpenFileName(this,
+                                                   "Wybierz plik historii egzaminów", "", "Pliki binarne (*.bin)");
+
+    if (sciezka.isEmpty()) return;
+
+    // 2. Deserializacja i generowanie raportu przez usługę
+    QString raportHtml = m_uslugi.generujRaportHistorii(sciezka);
+
+    // 3. Otwarcie nowego okna i wizualizacja
+    historia_dialog *dialog = new historia_dialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setWindowTitle("Podgląd Historii - " + QFileInfo(sciezka).fileName());
+    dialog->resize(600, 800);
+
+    dialog->ustawTekst(raportHtml);
+    dialog->show();
+}
+

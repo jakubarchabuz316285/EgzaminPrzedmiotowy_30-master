@@ -13,6 +13,7 @@ SOURCES += \
     W_DANYCH/historia_egzaminow.cpp \
     W_DANYCH\importer.cpp \
     W_DANYCH\importerBlokowy.cpp \
+    W_PREZENTACJI/historia_dialog.cpp \
     main.cpp \
     W_PREZENTACJI\mainwindow.cpp \
     W_USLUG\program.cpp \
@@ -23,12 +24,14 @@ HEADERS += \
     W_DANYCH/historia_egzaminow.h \
     W_DANYCH\importer.h \
     W_DANYCH\importerBlokowy.h \
+    W_PREZENTACJI/historia_dialog.h \
     W_PREZENTACJI\mainwindow.h \
     W_USLUG\program.h \
     W_DANYCH\pytanie.h \
     W_DANYCH\urn.h
 
 FORMS += \
+    W_PREZENTACJI/historia_dialog.ui \
     W_PREZENTACJI\mainwindow.ui
 
 # Default rules for deployment.

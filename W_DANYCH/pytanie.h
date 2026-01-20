@@ -15,7 +15,7 @@ public:
     Pytanie() = default;
     Pytanie(QString &rawData, int num, int blok);
     QString getTresc();
-    QString getCzystyNaglowek();
+    QString getCzystyNaglowek() const;
     QString getNaglowek();
     QString getWiedza();
     QString getZrozumienie();

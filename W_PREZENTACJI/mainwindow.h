@@ -12,6 +12,7 @@
 #include <QComboBox>
 #include <QCheckBox>
 
+#include "W_PREZENTACJI/historia_dialog.h"
 #include "W_USLUG\program.h"
 #include "W_DANYCH\pytanie.h"
 
@@ -37,6 +38,8 @@ private slots:
     void on_pushWybBA_clicked();
     void on_pushWybBB_clicked();
     void wypisz(QVector<Pytanie>&,int);
+
+    void on_wczytaj_historie_btn_clicked();
 
 private:
     static const int MAX_LICZ_BLOKOW = 2;
