@@ -74,14 +74,26 @@ QStringList Program::getListaPrzedmiotow()
 // USŁUGA oczyszczania wektora wylosowanych pytań z wybranych do usunięcia:
 void Program::odznaczPytania(QVector<int> pytDoOdznaczenia, int blok)
 {
-    // Najpierw sortowane są numery pytań do usuniecia aby uzyskać spójny i uprządkowany zbiór:
+    // 1. Sortujemy malejąco, aby usuwanie z vektora nie zmieniało indeksów elementów, które jeszcze mają zostać usunięte
     std::sort(pytDoOdznaczenia.rbegin(), pytDoOdznaczenia.rend());
 
-    // Eliminacja kolejnych pytań z wektora pytań (wektor pytań nie jest posortowany -  tak ma być)
-    for(auto idx:pytDoOdznaczenia)
-        m_WylosPyt[blok].erase(m_WylosPyt[blok].begin()+idx);
+    QVector<Pytanie> odrzuconeWTejTurze;
 
-    // Ponowne zlecenie wyświetlenia pytań do warstwy prezentacji (tym razem po usunięciu niechcianych):
+    // 2. Pobieramy pytania do listy odrzuconych zanim je skasujemy
+    for(auto idx : pytDoOdznaczenia) {
+        odrzuconeWTejTurze.push_back(m_WylosPyt[blok].at(idx));
+    }
+
+    // 3. Usuwamy z listy aktywnych
+    for(auto idx : pytDoOdznaczenia) {
+        m_WylosPyt[blok].erase(m_WylosPyt[blok].begin() + idx);
+    }
+
+    // 4. Aktualizujemy historię - dodajemy informację o odrzuconych do ostatniej sesji
+    // Zakładając, że historia.dodaj_odrzucone_do_ostatniej_sesji zostanie dopisana:
+    historia.dodaj_odrzucone_do_ostatniej_sesji(odrzuconeWTejTurze);
+
+    // 5. Ponowne zlecenie wyświetlenia
     emit wypisz(m_WylosPyt[blok], blok);
 }
 
@@ -105,9 +117,14 @@ void Program::ponownieWypiszWylosowane(int blok)
 void Program::zapiszHistorieWPliku()
 {
     // Próba zapisu - metoda zapisz_instancje() tworzy plik .bin z aktualną datą
-    if(!historia.zapisz_instancje()) {
+    if(!historia.zapisz_instancje("")) {
         qDebug() << "Błąd zapisu instancji w warstwie danych!";
     }
+}
+
+void Program::zapiszHistorieNaZadanie(QString sciezka_p)
+{
+    historia.zapisz_instancje(sciezka_p);
 }
 
 /**
@@ -116,41 +133,42 @@ void Program::zapiszHistorieWPliku()
  */
 QString Program::generujRaportHistorii(const QString &sciezka)
 {
-    // 1. Próba wczytania danych binarnych z podanej ścieżki
     if (!historia.wczytaj_instancje(sciezka)) {
         return "<h3>Błąd: Nie znaleziono pliku lub plik jest uszkodzony.</h3>";
     }
 
-    // 2. Pobranie wczytanej listy sesji
     const QVector<Historia_egzaminow::Sesja_egzaminacyjna> &sesje = historia.get_historia();
+    if (sesje.isEmpty()) return "<h3>Brak zapisanych egzaminów w tym pliku.</h3>";
 
-    // 3. Sprawdzenie, czy historia nie jest pusta
-    if (sesje.isEmpty()) {
-        return "<h3>Brak zapisanych egzaminów w tym pliku.</h3>";
-    }
+    QString html = "<html><body><h1>Historia Egzaminów</h1>";
 
-    // 4. Budowanie dokumentu HTML - nagłówek
-    QString html = "<html><body><h1 style='color: #2980b9;'>Historia Egzaminów</h1>";
-
-    // 5. Iteracja po każdej sesji egzaminacyjnej w historii
     for (const auto &sesja : sesje) {
-        html += "<hr></hr>"; // Linia oddzielająca sesje
+        html += "<hr></hr>";
         html += "<div style='border: 1px solid #ccc; margin-bottom: 20px; padding: 10px; border-radius: 5px;'>";
-
-        // Wyświetlanie metadanych sesji (nazwa przedmiotu i czas)
         html += "<p><b>Przedmiot:</b> " + sesja.przedmiot + "</p>";
         html += "<p><b>Data:</b> " + sesja.data.toString("dd.MM.yyyy HH:mm") + "</p>";
 
-        // 6. Lista pytań, które zostały wylosowane podczas tej sesji
-        html += "<b>Pytania wylosowane:</b><ul>";
+        // SEKCJA PYTAŃ ZATWIERDZONYCH
+        html += "<b style='color: green;'>Pytania końcowe:</b><ul>";
         for (const auto &dane : sesja.wylosowane) {
-            // Zabezpieczenie na wypadek, gdyby treść pytania była pusta (np. błąd importu)
-            QString tekst = dane.tresc.isEmpty() ? "Brak treści (tylko nr: " + QString::number(dane.numer) + ")" : dane.tresc;
-            html += "<li>" + tekst + "</li>";
+            html += "<li>" + (dane.tresc.isEmpty() ? "Nr: " + QString::number(dane.numer) : dane.tresc) + "</li>";
         }
-        html += "</ul></div>";
+        html += "</ul>";
+
+        // SEKCJA PYTAŃ ODRZUCONYCH
+        if (!sesja.odrzucone.isEmpty()) {
+            html += "<b style='color: #c0392b;'>Pytania odrzucone przez użytkownika:</b><ul>";
+            for (const auto &dane : sesja.odrzucone) {
+                html += "<li>"
+                        + (dane.tresc.isEmpty() ? "Nr: " + QString::number(dane.numer) : dane.tresc)
+                        + "</li>";
+            }
+            html += "</ul>";
+        }
+
+        html += "</div>";
     }
 
     html += "</body></html>";
-    return html; // Zwrócenie gotowego kodu HTML do wyświetlenia
+    return html;
 }

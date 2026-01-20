@@ -320,8 +320,7 @@ void MainWindow::on_checkDekomponuj_stateChanged(int state)
 void MainWindow::on_wczytaj_historie_btn_clicked()
 {
     // 1. Wybór pliku
-    QString sciezka = QFileDialog::getOpenFileName(this,
-                                                   "Wybierz plik historii egzaminów", "", "Pliki binarne (*.bin)");
+    QString sciezka = QFileDialog::getOpenFileName(this,"Wybierz plik historii egzaminów", "", "Pliki binarne (*.bin)");
 
     if (sciezka.isEmpty()) return;
 
@@ -336,5 +335,12 @@ void MainWindow::on_wczytaj_historie_btn_clicked()
 
     dialog->ustawTekst(raportHtml);
     dialog->show();
+}
+
+
+void MainWindow::on_zapisz_historie_btn_clicked()
+{
+    QString sciezka = QFileDialog::getSaveFileName(this, "Wybierz miejsce zapisu historii", "", "Pliki binarne (*.bin)");
+    m_uslugi.zapiszHistorieNaZadanie(sciezka);
 }
 

@@ -41,6 +41,8 @@ private slots:
 
     void on_wczytaj_historie_btn_clicked();
 
+    void on_zapisz_historie_btn_clicked();
+
 private:
     static const int MAX_LICZ_BLOKOW = 2;
     static const int MIN_LICZ_PYT = 3;

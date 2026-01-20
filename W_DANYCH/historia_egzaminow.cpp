@@ -4,7 +4,7 @@
  * Dodaje nową sesję egzaminacyjną do historii.
  * Przepisuje dane z obiektów klasy Pytanie do uproszczonej struktury zapisu.
  */
-    void Historia_egzaminow::dodaj_egzamin(const QString &przedmiot, const QVector<Pytanie> &wylosowane_p, const QVector<Pytanie> &odrzucone_p)
+void Historia_egzaminow::dodaj_egzamin(const QString &przedmiot, const QVector<Pytanie> &wylosowane_p, const QVector<Pytanie> &odrzucone_p)
 {
     Sesja_egzaminacyjna sesja;
     sesja.przedmiot = przedmiot;
@@ -49,13 +49,18 @@ void Historia_egzaminow::set_sciezka(const QString &sciezka)
  * Zapisuje aktualny stan historii do pliku binarnego.
  * Nazwa pliku generowana jest automatycznie na podstawie aktualnej daty.
  */
-bool Historia_egzaminow::zapisz_instancje() const
+bool Historia_egzaminow::zapisz_instancje(QString sciezka_p) const
 {
-    // Tworzenie nazwy pliku np. "raport_20231027_123000.bin"
-    QString sciezka = QDateTime::currentDateTime().toString("raport_yyyyMMdd_hhmmss") + ".bin";
-    if (sciezka.isEmpty()) return false;
+    //W przypadku gdy prześlemy pusty argument wykonuje sie automatyczny zapis, w przeciwnym razie zapis na żądanie
 
-    QFile plik(sciezka);
+    if (sciezka_p.isEmpty())
+    {
+        // Tworzenie nazwy pliku np. "raport_20231027_123000.bin"
+        QString sciezka = QDateTime::currentDateTime().toString("raport_yyyyMMdd_hhmmss") + ".bin";
+        sciezka_p = sciezka;
+    }
+
+    QFile plik(sciezka_p);
     // Próba otwarcia pliku w trybie zapisu
     if (!plik.open(QIODevice::WriteOnly)) {
         return false;
@@ -88,7 +93,34 @@ bool Historia_egzaminow::wczytaj_instancje(const QString &sciezka)
     in >> *this; // Wymaga przeciążonego operatora >> dla klasy Historia_egzaminow
 
     plik.close();
-    qDebug() << "Pomyślnie wczytano instancję. Liczba sesji:" << lista_egzaminow.size();
     return true;
+}
+
+void Historia_egzaminow::dodaj_odrzucone_do_ostatniej_sesji(const QVector<Pytanie> &odrzucone_p)
+{
+    if (lista_egzaminow.isEmpty()) return;
+
+    // 1. Złap ostatnią sesję
+    Sesja_egzaminacyjna &ostatnia = lista_egzaminow.last();
+
+    // 2. Przejdź przez każde pytanie, które użytkownik odrzucił
+    for (const Pytanie &p : odrzucone_p)
+    {
+        int nr = p.getNumer();
+
+        // Dodaj do listy odrzuconych w historii
+        ostatnia.odrzucone.append({nr, p.getBlok(), p.getCzystyNaglowek()});
+
+        // 3. Usuń to samo pytanie z listy wylosowanych (prosta pętla wsteczna)
+        // Szukamy w historii wylosowanych pytania o tym samym numerze
+        for (int i = 0; i < ostatnia.wylosowane.size(); ++i)
+        {
+            if (ostatnia.wylosowane[i].numer == nr)
+            {
+                ostatnia.wylosowane.removeAt(i);
+                break; // Znaleźliśmy i usunęliśmy, możemy przestać szukać tego konkretnego numeru
+            }
+        }
+    }
 }
 

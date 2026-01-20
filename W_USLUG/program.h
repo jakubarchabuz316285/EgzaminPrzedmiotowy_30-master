@@ -21,6 +21,7 @@ public:
     void odznaczPytania(QVector<int>,int);
     void ponownieWypiszWylosowane(int blok);
     void zapiszHistorieWPliku();
+    void zapiszHistorieNaZadanie(QString sciezka_p);
     QString generujRaportHistorii(const QString &sciezka);
 
 signals:

@@ -137,6 +137,20 @@
 historię</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="zapisz_historie_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>570</y>
+       <width>161</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Zapisz 
+historię</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QTabWidget" name="tabBloki">
     <property name="geometry">

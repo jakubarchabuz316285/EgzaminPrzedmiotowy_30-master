@@ -60,10 +60,13 @@ public:
     void set_sciezka(const QString &sciezka);
 
     // Zapisuje obiekt historii do pliku binarnego
-    bool zapisz_instancje() const;
+    bool zapisz_instancje(QString sciezka_p) const;
 
     // Wczytuje historię z podanego pliku binarnego
     bool wczytaj_instancje(const QString &sciezka);
+
+    //Zapisuje odrzucone pytania z checkbox
+    void dodaj_odrzucone_do_ostatniej_sesji(const QVector<Pytanie> &odrzucone_p);
 
     // Operator zapisu struktury Dane_pytania do QDataStream
     friend QDataStream &operator<<(QDataStream &out, const Dane_pytania &d)
